@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const qwerty = document.getElementById('qwerty');
-    const btnReset = document.querySelector('.btn__reset');
+    const btnStart = document.querySelector('.btn__reset');
     const overlay = document.getElementById('overlay');
     const ul = document.querySelector('ul');
     let missedGuess = 0;
     const ol = document.querySelector('ol');
     const h2 = document.querySelector('.title');
-
+    const retryBtn = document.createElement('a');
     const phrases = ['I do not like cheese', 'Happy new year', 'Sloths move fast', 'Baked pork chop on rice', 'Rainbow on a rainy day' ];
+    let heartIndex = 0;
 
-    btnReset.addEventListener('click', () => {
+    btnStart.addEventListener('click', () => {
         overlay.style.display = 'none';
     });
 
@@ -46,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return match;
     }
 
-    let i = 0;
     qwerty.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {
             const button = e.target;
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const checkingLetter = checkLetter(button);
 
                 if (checkingLetter === null) {
-                    const li = ol.children[i];
-                    i += 1;
+                    const li = ol.children[heartIndex];
+                    heartIndex += 1;
                     const img = li.firstElementChild;
                     img.src = "images/lostHeart.png";
                     missedGuess += 1;
@@ -69,18 +69,38 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkWin() {
         const letterLi = document.getElementsByClassName('letter');
         const showLi = document.getElementsByClassName('show');
-        console.log('hello', letterLi.length);
-        console.log('bye', showLi.length);
+        retryBtn.className = 'btn__reset';
+        retryBtn.textContent = 'Retry';
         
         if (letterLi.length === showLi.length) {
             overlay.className = 'win';
             h2.textContent = 'You Won!';
-
+            btnStart.style.display = 'none';
+            overlay.appendChild(retryBtn);
             overlay.style.display = 'flex';
         } else if (missedGuess > 4) {
             overlay.className = 'lose';
             h2.textContent = 'You Lost!';
+            btnStart.style.display = 'none';
+            overlay.appendChild(retryBtn);
             overlay.style.display = 'flex';
         }
     }
+
+    retryBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        ul.innerHTML = '';
+        const newPhrase = getRandomPhraseAsArray(phrases);
+        addPhraseToDisplay(newPhrase);
+        missedGuess = 0;
+        heartIndex = 0;
+        const buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = '';
+        };
+        const images = document.getElementsByTagName('img');
+        for (let i = 0; i < images.length; i++) {
+            images[i].src = "images/liveHeart.png";
+        }
+    });
 });
