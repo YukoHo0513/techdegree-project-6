@@ -95,6 +95,9 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  transition-timing-function: ease-in-out;
+  transition-duration: 1s;
+  transform: rotateX(-360deg);
 }
 
 /* Keyboard */
