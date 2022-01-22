@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkLetter(button) {
         const lis = ul.childNodes;
-        let match = null;
+        let letterFound = null;
         for (let i = 0; i < lis.length; i++) {
             if (button.textContent === lis[i].textContent) {
                 lis[i].className += ' show';
-                match = button.textContent;
+                letterFound = button.textContent;
             } 
         }
-        return match;
+        return letterFound;
     }
 
     qwerty.addEventListener('click', (e) => {
