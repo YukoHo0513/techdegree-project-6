@@ -93,7 +93,9 @@ button {
 }
 
 .show {
-  color: #000;
+  color: rgb(247, 99, 89);
+  font-family: monospace;
+  font-size: 20px;
   background-color: #76CE82;
   transition-timing-function: ease-in-out;
   transition-duration: 1s;
@@ -135,6 +137,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .title {
