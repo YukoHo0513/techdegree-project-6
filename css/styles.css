@@ -93,8 +93,8 @@ button {
 }
 
 .show {
-  color: rgb(247, 99, 89);
-  font-family: monospace;
+  color: #FFF;
+  font-family:sans-serif;
   font-size: 20px;
   background-color: #76CE82;
   transition-timing-function: ease-in-out;
@@ -117,11 +117,13 @@ button {
 }
 
 .btn__reset {
-  padding: 8px;
+  padding: 20px;
   margin: 50px auto;
-  background: #FFFFFF;
+  font-family: sans-serif;
+  background: rgb(247, 173, 185);
   border-radius: 5px;
-  font-size: var(--font-size-medium);
+  font-size: 35px;
+  color: #FFF;
 }
 
 /* Overlay */
@@ -149,7 +151,7 @@ button {
 }
 
 .start a {
-  color: var(--color-win);
+  color: var(#FFF);
 }
 
 .win {
